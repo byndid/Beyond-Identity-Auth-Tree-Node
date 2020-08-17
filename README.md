@@ -47,6 +47,8 @@ Please contact help@beyondidentity.com for more information.
 ### Step 3: Test the integration
 
 Open a new Incognito Mode Browser Window. 
+
 Navigate to the tree where the Beyond Identity OIDC node is configured.
+
 Login with Beyond Identity.
 
