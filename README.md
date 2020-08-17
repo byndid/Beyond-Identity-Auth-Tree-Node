@@ -20,6 +20,7 @@ Please contact help@beyondidentity.com for more information.
 
 1. Create or modify an existing tree, adding a node of type OpenID Connect. 
 
+![OIDC Node](https://github.com/byndid/forgerock/blob/master/oidc_config.png)
 
 2. Enter the following values for each configuration option in the OpenID Connect Node:
 
