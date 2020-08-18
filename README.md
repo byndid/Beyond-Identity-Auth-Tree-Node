@@ -26,8 +26,8 @@ Please contact help@beyondidentity.com for more information.
 
 | Name                                | Value                                                                                                              |
 |-------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| Authentication Endpoint URL.        | https://auth.byndid.com/authorize                                                                                  |
-| Access Token Endpoint URL           | https://auth.byndid.com/token                                                                                      |
+| Authentication Endpoint URL.        | https://auth.byndid.com/v2/authorize                                                                               |
+| Access Token Endpoint URL           | https://auth.byndid.com/v2/token                                                                                   |
 | User Profile Service URL            | Leave empty                                                                                                        |
 | OAuth Scopes                        | openid                                                                                                             |
 | Redirect URL                        | Varies based on your environment. Typically:  https://<forgerock-domain>/openam/?realm=<REALM>&service=<AUTH_TREE> |
@@ -37,13 +37,13 @@ Please contact help@beyondidentity.com for more information.
 | Account Provider                    | org.forgerock.openam.authentication.modules.common.mapping.DefaultAccountProvider                                  |
 | Account Mapper                      | org.forgerock.openam.authentication.modules.oidc.JwtAttributeMapper                                                |
 | Attribute Mapper                    | Use default.                                                                                                       |
-| Account Mapper Configuration        | Configure this to map sub to the attribute that contains your user’s BeyondIdentity Root Fingerprint               |
-| Attribute Mapper Configuration      | Configure this to map sub to the attribute that contains your user’s BeyondIdentity Root Fingerprint               |
+| Account Mapper Configuration        | Configure this to map sub to the attribute that contains your user’s id.                                           |
+| Attribute Mapper Configuration      | Configure this to map sub to the attribute that contains your user’s id                                            |
 | Save Attributes in the session      | enabled                                                                                                            |
 | OAuth 2.0 Mix-Up mitigation Enabled | disabled                                                                                                           |
-| Token Issuer                        | https://auth.byndid.com/token                                                                                      |
+| Token Issuer                        | https://auth.byndid.com/v2/token                                                                                   |
 | OpenID Connect Validation Type      | Well Known URL                                                                                                     |
-| OpenID Connect Validation Value     | https://auth.byndid.com/.well-known/openid-configuration                                                           |
+| OpenID Connect Validation Value     | https://auth.byndid.com/v2/.well-known/openid-configuration                                                        |
  
 ### Step 3: Test the integration
 
