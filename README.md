@@ -30,7 +30,7 @@ Please contact help@beyondidentity.com for more information.
 | Access Token Endpoint URL           | https://auth.byndid.com/v2/token                                                                                    |
 | User Profile Service URL            | Leave empty                                                                                                         |
 | OAuth Scopes                        | openid                                                                                                              |
-| Redirect URL                        | Varies based on your environment. Typically:  `https://<forgerock-domain>/openam/?realm=<REALM>&service=<AUTH_TREE>`|
+| Redirect URL                        | Varies based on your environment. Typically:  `https://<forgerock-domain>/openam/?realm=<realm>&service=<auth_tree>`|
 | Social Provider                     | Beyond Identity                                                                                                     |
 | Auth ID Key                         | sub                                                                                                                 |
 | Use Basic Auth                      | enabled                                                                                                             |
