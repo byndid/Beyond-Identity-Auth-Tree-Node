@@ -7,6 +7,20 @@ This integration relies on the ForgeRock OIDC Node which is available in AM6.0 o
 
 ## Configuration
 
+### Step 1: Setup Beyond Identity Admin Console Federation to ForgeRock AM
+
+1. In the AM console, navigate to Realms > Realm Name > Applications > OAuth 2.0. 
+
+2. Click Add Client, and then provide the Client ID, client secret, redirection URI, and scope. 
+Client ID: beyondidentityadmin
+Client secret: <specify a secret password>
+Redirection URIs: https://admin.byndid.com/auth/callback
+Scope(s): openid
+
+3. Click Create to create the profile.
+
+![BI Admin Console App](https://github.com/byndid/forgerock/blob/master/bi_admin_console_app.png)
+ 
 ### Step 1: Obtain configuration values from Beyond Identity
 
 Your Beyond Identity Solutions Engineer will provide the following information: 
