@@ -3,7 +3,7 @@
 This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for your instance of ForgeRock Platform 7 using the ForgeRock OIDC node.
  
 ## Prerequisites
-This integration relies on the ForgeRock OIDC Node which is available in AM6.0 or greater.
+This integration relies on the ForgeRock OIDC Node which is available in ForgeRock Platform 7.
 
 ## Configuration
 
@@ -66,7 +66,47 @@ This integration relies on the ForgeRock OIDC Node which is available in AM6.0 o
 7. Click on “Save Changes”
 
 
+### Step 4: Setup Beyond Identity User Console Authetication
 
+1. Once logged into Beyond Identity Admin UI, click on Account Settings.
+
+![BI Account Settings](https://github.com/byndid/forgerock/blob/master/bi_account_settings.png)
+
+2. Click on “User Portal” tab and click on Edit.
+
+3. Update SSO Issuer, SSO Client Id, and SSO Client Secret fields from the previous step.
+
+![BI User Console Access](https://github.com/byndid/forgerock/blob/master/bi_user_console_access.png)
+
+
+
+
+
+
+
+3. In the AM console, navigate to Realms > Realm Name > Applications > OAuth 2.0. 
+
+2. Click Add Client, and then provide the Client ID, client secret, redirection URI, and scope. 
+
+   Client ID: beyondidentityadmin
+
+   Client secret: <specify a secret password>
+
+   Redirection URIs: https://admin.byndid.com/auth/callback
+
+   Scope(s): openid
+
+3. Click Create to create the profile.
+
+![BI Admin Console App](https://github.com/byndid/forgerock/blob/master/bi_admin_console_app.png)
+
+4. Click on the newly created profile.
+
+5. Click on the Advanced Tab
+
+6. Turn on “Implied consent”
+
+7. Click on “Save Changes”
 
  
 ### Step 1: Obtain configuration values from Beyond Identity
