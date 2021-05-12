@@ -1,6 +1,6 @@
 # Beyond Identity ForgeRock Installation Guide
 
-This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for your ForgeRock using the ForgeRock OIDC node.
+This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for your instance of ForgeRock Platform 7 using the ForgeRock OIDC node.
  
 ## Prerequisites
 This integration relies on the ForgeRock OIDC Node which is available in AM6.0 or greater.
@@ -20,7 +20,7 @@ Please contact help@beyondidentity.com for more information.
 
 1. Create or modify an existing tree, adding a node of type OpenID Connect. 
 
-![OIDC Node](https://github.com/byndid/forgerock/blob/master/oidc_config.png)
+![OIDC Node](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
 
 2. Enter the following values for each configuration option in the OpenID Connect Node:
 
@@ -28,7 +28,7 @@ Please contact help@beyondidentity.com for more information.
 |-------------------------------------|-------------------------------------------------------------------------------------------------------------------- |
 | Authentication Endpoint URL.        | https://auth.byndid.com/v2/authorize                                                                                |
 | Access Token Endpoint URL           | https://auth.byndid.com/v2/token                                                                                    |
-| User Profile Service URL            | Leave empty                                                                                                         |
+| User Profile Service URL            | https://auth.byndid.com/v2/userinfo                                                                                 |
 | OAuth Scopes                        | `openid`                                                                                                            |
 | Redirect URL                        | Varies based on your environment. Typically:  `https://<forgerock-domain>/openam/?realm=<realm>&service=<auth_tree>`|
 | Social Provider                     | Beyond Identity                                                                                                     |
