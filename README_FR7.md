@@ -15,7 +15,7 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 
    Client ID: beyondidentityadmin
 
-   Client Secret: specify_a_secret_password_here
+   Client Secret: specify_client_secret_here
 
    Redirection URIs: https://admin.byndid.com/auth/callback
 
@@ -47,7 +47,7 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 
    Client ID: beyondidentityuser
 
-   Client Secret: specify_a_secret_password_here
+   Client Secret: specify_client_here
 
    Redirection URIs: https://user.byndid.com/auth-user/callback
 
@@ -221,7 +221,7 @@ return json(object(
 3. Custom login URL Template:
 
 ```javascript
-http://am.beyondidentity.me:8083?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
+http://<your_domain>?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
 ```
 
 4. Click on “Save Changes”.
