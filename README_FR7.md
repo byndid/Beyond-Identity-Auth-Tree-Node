@@ -269,7 +269,7 @@ http://am.beyondidentity.me:8083?service=BeyondIdentity&goto=${goto}<#if acrValu
 
 1. To enroll (provision) a user in the Beyond Identity experience:
 
-1a. Use a SCIM Connector and provision users from ForgeRock to Beyond Identity.
+   Use a SCIM Connector and provision users from ForgeRock to Beyond Identity.
 
    To configure SCIM Connector in ForgeRock refer to: https://backstage.forgerock.com/docs/idm/7/connector-reference/chap-scim.html
    
