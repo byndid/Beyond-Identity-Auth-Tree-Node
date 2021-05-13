@@ -11,11 +11,11 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 
 1. In the AM console, navigate to Realms > Realm Name > Applications > OAuth 2.0. 
 
-2. Click Add Client, and then provide the Client ID, client secret, redirection URI, and scope. 
+2. Click Add Client, and then provide the Client ID, Client Secret, Redirection URI, and Scope. 
 
    Client ID: beyondidentityadmin
 
-   Client secret: <specify a secret password>
+   Client Secret: specify_a_secret_password_here
 
    Redirection URIs: https://admin.byndid.com/auth/callback
 
@@ -43,11 +43,11 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 
 1. In the AM console, navigate to Realms > Realm Name > Applications > OAuth 2.0. 
 
-2. Click Add Client, and then provide the Client ID, client secret, redirection URI, and scope. 
+2. Click Add Client, and then provide the Client ID, Client Secret, Redirection URI, and Scope. 
 
    Client ID: beyondidentityuser
 
-   Client secret: <specify a secret password>
+   Client Secret: specify_a_secret_password_here
 
    Redirection URIs: https://user.byndid.com/auth-user/callback
 
@@ -262,15 +262,27 @@ http://am.beyondidentity.me:8083?service=BeyondIdentity&goto=${goto}<#if acrValu
 
 3. Click “Save”
 
+
 ## Setting up Test Users
 
 ### User Enrollment
 
-1. To enroll a user in the Beyond Identity experience,
+1. To enroll (provision) a user in the Beyond Identity experience:
+
+1a. Use a SCIM Connector and provision users from ForgeRock to Beyond Identity.
+
+   To configure SCIM Connector in ForgeRock refer to: https://backstage.forgerock.com/docs/idm/7/connector-reference/chap-scim.html
+   
+   SCIM API Endpoints:
+   
+   https://api.byndid.com/scim/v2/Users
+
+   https://api.byndid.com/scim/v2/Groups
 
 
 2. Enrolled user will receive an email from Beyond Identity welcoming them to the new Identity Provider.
-See image below for reference:
+
+   See image below for reference:
 
 ![BI Enrollment Email](https://github.com/byndid/forgerock/blob/master/bi_enrollment_email.png)
 
@@ -304,5 +316,5 @@ See image below for reference:
 
 ## User Deprovisioning
 
-To deprovision
+To deprovision the users, use the same SCIM Connector described above.
 
