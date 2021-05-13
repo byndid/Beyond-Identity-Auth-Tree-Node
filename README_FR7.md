@@ -181,9 +181,9 @@ return json(object(
    
    Auth ID Key: sub
    
-   Client ID: <OIDC Client ID from the previous step>
+   Client ID: oidc_client_id_from_step_5.2
    
-   Client Secret: <OIDC Client Secret from the previous step>
+   Client Secret: oidc_client_secret__from_step_5.2
    
    Authentication Endpoint URL: https://auth.byndid.com/v2/authorize
    
