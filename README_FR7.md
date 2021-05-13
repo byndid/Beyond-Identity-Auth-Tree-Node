@@ -79,79 +79,230 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 ![BI User Console Access](https://github.com/byndid/forgerock/blob/master/bi_user_console_access.png)
 
 
+### Step 5: Setup Beyond Identity Access for User Console
+
+1. Once logged into Beyond Identity Admin UI, click on “Integrations” tab and then click on OIDC Clients.
+
+2. Click on “Add OIDC Client” and fill in Name, Redirect URI field and leave the default value for Token Signing Algorithm and Auth Method as shown below.
+
+![BI Add OIDC Client](https://github.com/byndid/forgerock/blob/master/bi_add_oidc_client.png)
+
+3. Click on the newly created OIDC Client configuration and write down Client ID and Client Secret Value. You will be using these values in the next step.
+
+![BI Edit OIDC Client](https://github.com/byndid/forgerock/blob/master/bi_edit_oidc_client.png)
+
+### Step 6: Configure Beyond Identity as the Identity Provider
+
+### Step 6a: Create Social Identity Provider Profile Transformation script
+
+1. In the AM console, navigate to Realms > Realm Name > Scripts > New Script
+
+   Name: Beyond Identity Profile Normalization
+
+   Script Type: Select “Social Identity Provider Profile Transformation” from the dropdown.
+
+2. Click on “Create”.
+
+```javascript
+import static org.forgerock.json.JsonValue.field
+import static org.forgerock.json.JsonValue.json
+import static org.forgerock.json.JsonValue.object
+
+import org.forgerock.json.JsonValue
+
+JsonValue managedUser = json(object(
+        field("userName", normalizedProfile.username)))
+
+if (normalizedProfile.givenName.isNotNull()) managedUser.put("givenName", normalizedProfile.givenName)
+if (normalizedProfile.familyName.isNotNull()) managedUser.put("sn", normalizedProfile.familyName)
+if (normalizedProfile.email.isNotNull()) managedUser.put("mail", normalizedProfile.email)
+if (normalizedProfile.userName.isNotNull()) managedUser.put("userName", normalizedProfile.userName)
+if (normalizedProfile.postalAddress.isNotNull()) managedUser.put("postalAddress", normalizedProfile.postalAddress)
+if (normalizedProfile.addressLocality.isNotNull()) managedUser.put("city", normalizedProfile.addressLocality)
+if (normalizedProfile.addressRegion.isNotNull()) managedUser.put("stateProvince", normalizedProfile.addressRegion)
+if (normalizedProfile.postalCode.isNotNull()) managedUser.put("postalCode", normalizedProfile.postalCode)
+if (normalizedProfile.country.isNotNull()) managedUser.put("country", normalizedProfile.country)
+if (normalizedProfile.phone.isNotNull()) managedUser.put("telephoneNumber", normalizedProfile.phone)
+
+return managedUser
+```
+
+3. Click on “Save”.
 
 
+### Step 6b: Create Social Identity Provider Profile Transformation script
+
+1. In the AM console, navigate to Realms > Realm Name > Scripts > New Script
+
+   Name: BeyondIdentity_OpenIDConnect
+
+   Script Type: Select “Social Identity Provider Profile Transformation” from the dropdown.
+
+2. Click on “Create”.
+
+```javascript
+import static org.forgerock.json.JsonValue.field
+import static org.forgerock.json.JsonValue.json
+import static org.forgerock.json.JsonValue.object
+
+String[] nameArray = rawProfile.name.asString().split(" ");
+String firstName = nameArray[0];
+String lastName = nameArray[1];
+
+return json(object(
+        field("id", rawProfile.sub),
+        field("email", rawProfile.email),
+  		field("givenName", firstName),
+		field("familyName", lastName),
+        field("username", rawProfile.sub)
+))
+```
+
+3. Click on “Save”.
+
+### Step 6c: Configure Beyond Identity as the Social Identity Provider Service
+
+1. In the AM console, navigate to Realms > Realm Name > Services > Social Identity Provider Service.
+
+2. Click on “Secondary Configurations”.
+
+3. Click on “Add a Secondary Configuration”.
+
+4. Select “Client connection for providers that implement OpenID Connect Specification” from the dropdown then provide the following values:
+
+   Name: BeyondIdentity
+   
+   Auth ID Key: sub
+   
+   Client ID: <OIDC Client ID from the previous step>
+   
+   Client Secret: <OIDC Client Secret from the previous step>
+   
+   Authentication Endpoint URL: https://auth.byndid.com/v2/authorize
+   
+   Access Token Endpoint URL: https://auth.byndid.com/v2/token
+   
+   User Profile Services URL: https://auth.byndid.com/v2/userinfo
+   
+   Redirect URI: http://am.beyondidentity.me:8083
+   
+   Scope Delimiter: <enter space character>
+   
+   OAuth Scopes(s): openid
+   
+   Well Known Endpoint: https://auth.byndid.com/v2/.well-known/openid-configuration
+
+   UI Config Properties
+   
+   Key: buttonImage
+   
+   Value: https://byndid-public-assets.s3-us-west-2.amazonaws.com/logos/beyondidentity.png
+
+5. Click “Add”
+
+   Key: buttonDisplayName
+   
+   Value: Beyond Identity
+   
+   Transform Script: Select “BeyondIdentity_OpenIDConnect” from the dropdown.
+
+![BI OIDC Config](https://github.com/byndid/forgerock/blob/master/bi_oidc_config.png)
+
+6. Click “Create” to create the configuration.
+
+7. Click “Save Changes” with default values.
+
+### Step 6d: Configure Beyond Identity as the OAuth2 Provider Service
+
+1. In the AM console, navigate to Realms > Realm Name > Services > OAuth2 Provider Service.
+
+2. Click on “Advanced”.
+
+3. Custom login URL Template:
+
+```javascript
+http://am.beyondidentity.me:8083?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
+```
+
+4. Click on “Save Changes”.
+
+### Step 6e: Configure Beyond Identity Authentication Tree
+
+1. In the AM console, navigate to Realms > Realm Name > Authentication > Trees.
+
+2. Click on Create Tree
+
+   Name: Beyond Identity
+   
+   For “Social Identity Provider”
+
+   Enable “Include local authentication”
+
+   For “Social Provider Handler Node”
+
+   Transformation Script: Select “Beyond Identity Profile Normalization” from the dropdown
+
+   For “Select Identity Provider”
+
+   Enable “Include local authentication”
+
+   Enable “Offer only existing providers”
+
+   For “Attribute Collector”
+
+   Add “Attributes to collect”
+
+   sn
+
+   givenName
+
+   mail
+
+![BI OIDC Auth Tree](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
+
+3. Click “Save”
+
+## Setting up Test Users
+
+### User Enrollment
+
+1. To enroll a user in the Beyond Identity experience,
 
 
+2. Enrolled user will receive an email from Beyond Identity welcoming them to the new Identity Provider.
+See image below for reference:
 
-3. In the AM console, navigate to Realms > Realm Name > Applications > OAuth 2.0. 
+![BI Enrollment Email](https://github.com/byndid/forgerock/blob/master/bi_enrollment_email.png)
 
-2. Click Add Client, and then provide the Client ID, client secret, redirection URI, and scope. 
+3. Each enrolled user will be asked to follow the two steps below:
 
-   Client ID: beyondidentityadmin
+   Step 1: Download the Beyond Identity Authenticator to their device.
 
-   Client secret: <specify a secret password>
+   When the user clicks “View Download Options”, the Beyond Identity Authenticator downloads page will open in a browser with all supported platforms displayed. 
+   
+   The user should download and install the Beyond Identity Authenticator on their device if they have not already.
 
-   Redirection URIs: https://admin.byndid.com/auth/callback
+   Now that the user has the Authenticator installed on their device, they should proceed to Step 2 as there is not yet a user credential associated with the   Authenticator on that device.
 
-   Scope(s): openid
+   Step 2: Register their Credential in the Beyond Identity IdP.
 
-3. Click Create to create the profile.
+   By clicking on Step 2 “Register New Credential”, the user’s credential will get enrolled in the Beyond Identity service on the back end. On the front end, users who click Step 2 will be taken to the Beyond Identity Authenticator where they will see the progress of their credential registration. Once completed, the user will see a credentials in the Authenticator. 
+   
+   See example image below:
 
-![BI Admin Console App](https://github.com/byndid/forgerock/blob/master/bi_admin_console_app.png)
+![BI Authenticator](https://github.com/byndid/forgerock/blob/master/bi_authenticator.png)
 
-4. Click on the newly created profile.
+## User Authentication (Signing in)
 
-5. Click on the Advanced Tab
+1. Each enrolled user can visit their ForgeRock instance or any application supported by your SSO to sign into their corporate applications. 
 
-6. Turn on “Implied consent”
+2. The ForgeRock application or SSO-supported application will display a link to sign in using Beyond Identity.
 
-7. Click on “Save Changes”
+3. The user should click on the link to be signed into their application, without the use of a password. The Beyond Identity app along with a success notification will display.
 
- 
-### Step 1: Obtain configuration values from Beyond Identity
+   Note: For iOS devices, some application sign-in processes will ask the user to exit out of the Beyond Identity Authenticator to return to their app after successful authentication.
 
-Your Beyond Identity Solutions Engineer will provide the following information: 
+## User Deprovisioning
 
-- OIDC Client ID
-- OIDC Client Secret
-
-Please contact help@beyondidentity.com for more information. 
-
-### Step 2: Configuring an OIDC Node
-
-1. Create or modify an existing tree, adding a node of type OpenID Connect. 
-
-![OIDC Node](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
-
-2. Enter the following values for each configuration option in the OpenID Connect Node:
-
-| Name                                | Value                                                                                                               |
-|-------------------------------------|-------------------------------------------------------------------------------------------------------------------- |
-| Authentication Endpoint URL.        | https://auth.byndid.com/v2/authorize                                                                                |
-| Access Token Endpoint URL           | https://auth.byndid.com/v2/token                                                                                    |
-| User Profile Service URL            | https://auth.byndid.com/v2/userinfo                                                                                 |
-| OAuth Scopes                        | `openid`                                                                                                            |
-| Redirect URL                        | Varies based on your environment. Typically:  `https://<forgerock-domain>/openam/?realm=<realm>&service=<auth_tree>`|
-| Social Provider                     | Beyond Identity                                                                                                     |
-| Auth ID Key                         | `sub`                                                                                                               |
-| Use Basic Auth                      | `enabled`                                                                                                           |
-| Account Provider                    | `org.forgerock.openam.authentication.modules.common.mapping.DefaultAccountProvider`                                 |
-| Account Mapper                      | `org.forgerock.openam.authentication.modules.oidc.JwtAttributeMapper`                                               |
-| Attribute Mapper                    | Use default.                                                                                                        |
-| Account Mapper Configuration        | Configure this to map sub to the attribute that contains your user’s id.                                            |
-| Attribute Mapper Configuration      | Configure this to map sub to the attribute that contains your user’s id                                             |
-| Save Attributes in the session      | `enabled`                                                                                                           |
-| OAuth 2.0 Mix-Up mitigation Enabled | `disabled`                                                                                                          |
-| Token Issuer                        | https://auth.byndid.com/v2/token                                                                                    |
-| OpenID Connect Validation Type      | Well Known URL                                                                                                      |
-| OpenID Connect Validation Value     | https://auth.byndid.com/v2/.well-known/openid-configuration                                                         |
- 
-### Step 3: Test the integration
-
-Open a new Incognito Mode Browser Window. 
-
-Navigate to the tree where the Beyond Identity OIDC node is configured.
-
-Login with Beyond Identity.
+To deprovision
 
