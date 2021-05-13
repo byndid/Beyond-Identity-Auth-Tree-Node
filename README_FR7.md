@@ -290,7 +290,7 @@ See image below for reference:
    
    See example image below:
 
-![BI Authenticator](https://github.com/byndid/forgerock/blob/master/bi_authenticator.png)
+![BI Authenticator](https://github.com/byndid/forgerock/blob/master/bi_authenticato.png)
 
 ## User Authentication (Signing in)
 
