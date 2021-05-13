@@ -1,4 +1,4 @@
-# Beyond Identity ForgeRock Installation Guide
+# Beyond Identity ForgeRock Integration Guide
 
 This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for your instance of ForgeRock Platform 7 using the ForgeRock OIDC node.
  
