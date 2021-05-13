@@ -191,7 +191,7 @@ return json(object(
    
    User Profile Services URL: https://auth.byndid.com/v2/userinfo
    
-   Redirect URI: obtain_from_forgerock
+   Redirect URI: AM_URI
    
    Scope Delimiter: enter_a_space_character_here
    
@@ -228,7 +228,7 @@ return json(object(
 3. Custom login URL Template:
 
 ```javascript
-http://<your_domain>?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
+http://<your_am_domain>?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
 ```
 
 4. Click on “Save Changes”.
