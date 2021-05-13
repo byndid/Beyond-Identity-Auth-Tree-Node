@@ -184,9 +184,9 @@ return json(object(
    
    User Profile Services URL: https://auth.byndid.com/v2/userinfo
    
-   Redirect URI: http://am.beyondidentity.me:8083
+   Redirect URI: obtain_from_forgerock
    
-   Scope Delimiter: <enter space character>
+   Scope Delimiter: enter_a_space_character_here
    
    OAuth Scopes(s): openid
    
