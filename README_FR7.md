@@ -1,3 +1,10 @@
+# Beyond Identity
+
+Beyond Identity provides the most secure authentication platform in the world. Breaking down barriers between cybersecurity, identity, and device management, Beyond Identity fundamentally changes the way the world logs in–eliminating passwords and providing users with a frictionless multi-factor login experience. Beyond passwordless, the company provides the zero-trust access needed to secure hybrid work environments, where tightly controlling which users and which devices are accessing critical cloud resources has become essential.
+
+The advanced platform collects dozens of user and device risk signals during each login - enabling customers to enforce continuous, risk-based access control. The innovative architecture replaces passwords with the proven asymmetric cryptography that underpins TLS and protects trillions of dollars of transactions daily. Customers turn to Beyond Identity to stop cyberattacks, protect their most critical data, and meet compliance requirements
+
+
 # Beyond Identity ForgeRock Integration Guide
 
 This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for your instance of ForgeRock Platform 7 using the ForgeRock OIDC node.
