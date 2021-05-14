@@ -257,29 +257,23 @@ return json(object(
    
    For most nodes, keep the default values, except as stated below:
    
-   For “Social Identity Provider”
+   For “Social Identity Provider” (when adding this node for the first time)
 
-   Enable “Include local authentication”
+       Enable “Include local authentication”
+   
+   For “Select Identity Provider” (when adding this node for the second time)
 
-   For “Social Provider Handler Node”
+       Enable “Include local authentication”
 
-   Transformation Script: Select “Beyond Identity Profile Normalization” from the dropdown
+       Enable “Offer only existing providers”
 
-   For “Select Identity Provider”
+   For “Social Provider Handler Node” (for both times when this node is added)
 
-   Enable “Include local authentication”
-
-   Enable “Offer only existing providers”
+       Transformation Script: Select “Beyond Identity Profile Normalization” from the dropdown
 
    For “Attribute Collector”
 
-   Add “Attributes to collect”
-
-   sn
-
-   givenName
-
-   mail
+       Add “Attributes to collect”: sn, givenName, mail
 
 
 3. Click “Save”
