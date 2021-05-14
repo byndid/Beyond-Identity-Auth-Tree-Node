@@ -199,7 +199,7 @@ return json(object(
    
    OAuth Scopes(s): openid
    
-   Well Known Endpoint: https://auth.byndid.com/v2/.well-known/openid-configuration
+   Well Known Endpoint: https://auth.byndid.com/v2/.well-known/jwks.json
 
    UI Config Properties
    
