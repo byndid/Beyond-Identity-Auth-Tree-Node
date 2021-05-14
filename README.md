@@ -249,7 +249,7 @@ return json(object(
 
 2. Click on Create Tree
 
-   Name: Beyond Identity
+   Name: BeyondIdentity
    
    Now start buidling the tree as per the diagram shown below. This tree is made up of various nodes, which define actions taken during authentication. The nodes are a small unit of work which have a single purpose. You combine them together to define your unique user experience. 
    
