@@ -103,7 +103,7 @@ assumes integration between AM and IDM has been configured.
 ![BI Edit OIDC Client](https://github.com/byndid/forgerock/blob/master/bi_edit_oidc_client.png)
 
 
-#### Step 6: Configure Beyond Identity as the OAuth2 Provider Service
+### Step 6: Configure Beyond Identity as the OAuth2 Provider Service
 
 This is used to set BeyondIdentity as the default tree for OIDC clients.
 
