@@ -240,26 +240,33 @@ return json(object(
    
    For most nodes, keep the default values, except as stated below:
    
-   For “Social Identity Provider” (when adding this node for the first time)
-
-       Enable “Include local authentication”
-   
-   For “Select Identity Provider” (when adding this node for the second time)
-
-       Enable “Include local authentication”
-
-       Enable “Offer only existing providers”
-
-   For “Social Provider Handler Node” (for both times when this node is added)
-
-       Transformation Script: Select “Beyond Identity Profile Normalization” from the dropdown
-
-   For “Attribute Collector”
-
-       Add “Attributes to collect”: sn, givenName, mail
-
+| Node Name                           | Value                                                                                                               |
+|-------------------------------------|-------------------------------------------------------------------------------------------------------------------- |
+| Start                               |                                                                                                                     |
+| Page Node                           |                                                                                                                     |
+| Username Collector                  |                                                                                                                     |
+| Password Collector                  |                                                                                                                     |
+| Select Identity Provider            | Enable “Include local authentication”                                                                               |
+| Social Provider Handler Node        | Transformation Script: Select “Beyond Identity Profile Normalization” from the dropdown                             |
+| Identify Existing User              |                                                                                                                     |
+| Data Store Decision                 |                                                                                                                     |
+| Select Identity Provider            | Enable “Include local authentication” and “Offer only existing providers”                                           |
+| Page Node                           |                                                                                                                     |
+| Platfor Username                    |                                                                                                                     |
+| Attribute Collector                 | Add “Attributes to collect”: sn, givenName, mail                                                                    |
+| Platform Password                   |                                                                                                                     |
+| Page Node                           |                                                                                                                     |
+| Username Collector                  |                                                                                                                     |
+| Password Collector                  |                                                                                                                     |
+| Social Provider Handler Node        | Transformation Script: Select “Beyond Identity Profile Normalization” from the dropdown                             |
+| Create Object                       |                                                                                                                     |
+| Data Store Decision                 |                                                                                                                     |
+| Patch Object                        |                                                                                                                     |
+| Failure                             |                                                                                                                     |  
+| Success                             |                                                                                                                     |
 
 3. Click “Save”
+
 
 ### Step 7: Configure Beyond Identity as the OAuth2 Provider Service
 
