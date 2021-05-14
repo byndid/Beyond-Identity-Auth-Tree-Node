@@ -251,6 +251,10 @@ return json(object(
 
    Name: Beyond Identity
    
+   Now start buidling the tree as per the diagram shown below. This tree is made up of various nodes, which define actions taken during authentication. The nodes are a small unit of work which have a single purpose. You combine them together to define your unique user experience. 
+   
+   ![BI OIDC Auth Tree](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
+   
    For “Social Identity Provider”
 
    Enable “Include local authentication”
@@ -275,7 +279,6 @@ return json(object(
 
    mail
 
-![BI OIDC Auth Tree](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
 
 3. Click “Save”
 
