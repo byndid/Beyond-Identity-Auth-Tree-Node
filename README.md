@@ -56,7 +56,7 @@ assumes integration between AM and IDM has been configured.
 
    Client ID: beyondidentityuser
 
-   Client Secret: specify_client_here
+   Client Secret: specify_client_secret_here
 
    Redirection URIs: https://user.byndid.com/auth-user/callback
 
