@@ -255,6 +255,8 @@ return json(object(
    
    ![BI OIDC Auth Tree](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
    
+   For most nodes, keep the default values, except as stated below:
+   
    For “Social Identity Provider”
 
    Enable “Include local authentication”
