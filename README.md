@@ -103,26 +103,9 @@ assumes integration between AM and IDM has been configured.
 ![BI Edit OIDC Client](https://github.com/byndid/forgerock/blob/master/bi_edit_oidc_client.png)
 
 
-### Step 6: Configure Beyond Identity as the OAuth2 Provider Service
+### Step 6: Configure Beyond Identity as an Identity Provider
 
-This is used to set BeyondIdentity as the default tree for OIDC clients.
-
-1. In the AM console, navigate to Realms > Realm Name > Services > OAuth2 Provider Service.
-
-2. Click on “Advanced”.
-
-3. Custom login URL Template:
-
-```javascript
-http://<your_am_domain>?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
-```
-
-4. Click on “Save Changes”.
-
-
-### Step 7: Configure Beyond Identity as an Identity Provider
-
-#### Step 7a: Create Social Identity Provider Profile Transformation script
+#### Step 6a: Create Social Identity Provider Profile Transformation script
 
 1. In the AM console, navigate to Realms > Realm Name > Scripts > New Script
 
@@ -159,7 +142,7 @@ return managedUser
 3. Click on “Save”.
 
 
-#### Step 7b: Create Social Identity Provider Profile Transformation script
+#### Step 6b: Create Social Identity Provider Profile Transformation script
 
 1. In the AM console, navigate to Realms > Realm Name > Scripts > New Script
 
@@ -190,7 +173,7 @@ return json(object(
 3. Click on “Save”.
 
 
-#### Step 7c: Configure Beyond Identity in the Social Identity Provider Service
+#### Step 6c: Configure Beyond Identity in the Social Identity Provider Service
 
 1. In the AM console, navigate to Realms > Realm Name > Services > Social Identity Provider Service.
 
@@ -243,7 +226,7 @@ return json(object(
 7. Click “Save Changes” with default values.
 
 
-#### Step 7d: Configure Beyond Identity Authentication Tree
+#### Step 6d: Configure Beyond Identity Authentication Tree
 
 1. In the AM console, navigate to Realms > Realm Name > Authentication > Trees.
 
@@ -277,6 +260,22 @@ return json(object(
 
 
 3. Click “Save”
+
+### Step 7: Configure Beyond Identity as the OAuth2 Provider Service
+
+This is used to set BeyondIdentity as the default tree for OIDC clients.
+
+1. In the AM console, navigate to Realms > Realm Name > Services > OAuth2 Provider Service.
+
+2. Click on “Advanced”.
+
+3. Custom login URL Template:
+
+```javascript
+http://<your_am_domain>?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr_values=${acrValues}</#if><#if realm??>&realm=${realm}</#if><#if module??>&module=${module}</#if><#if service??>&service=${service}</#if><#if locale??>&locale=${locale}</#if>:
+```
+
+4. Click on “Save Changes”.
 
 
 ## Setting up Test Users
