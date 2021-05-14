@@ -252,7 +252,7 @@ return json(object(
 | Data Store Decision                 |                                                                                                                     |
 | Select Identity Provider            | Enable “Include local authentication” and “Offer only existing providers”                                           |
 | Page Node                           |                                                                                                                     |
-| Platfor Username                    |                                                                                                                     |
+| Platform Username                   |                                                                                                                     |
 | Attribute Collector                 | Add “Attributes to collect”: sn, givenName, mail                                                                    |
 | Platform Password                   |                                                                                                                     |
 | Page Node                           |                                                                                                                     |
