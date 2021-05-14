@@ -247,8 +247,6 @@ return json(object(
 
 1. In the AM console, navigate to Realms > Realm Name > Authentication > Trees.
 
-
-//TODO The below direction on how to configure the nodes is somewhat unclear
 2. Click on Create Tree
 
    Name: Beyond Identity
