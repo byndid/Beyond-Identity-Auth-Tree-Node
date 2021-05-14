@@ -7,10 +7,12 @@ The advanced platform collects dozens of user and device risk signals during eac
 
 # Beyond Identity ForgeRock Integration Guide
 
-This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for your instance of ForgeRock Platform 7 using the ForgeRock OIDC node.
+This guide details the steps required to configure Beyond Identity as a passwordless authentication solution for 
+your instance of ForgeRock Platform 7.
  
 ## Prerequisites
-This integration relies on the ForgeRock OIDC Node which is available in ForgeRock Platform 7.
+This integration relies on the ForgeRock Social Provider Handler Node which is available in ForgeRock Platform 7 and 
+assumes integration between AM and IDM has been configured.
 
 ## Configuration
 
@@ -73,7 +75,7 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 7. Click on “Save Changes”
 
 
-### Step 4: Setup Beyond Identity User Console Authetication
+### Step 4: Setup Beyond Identity User Console Authentication
 
 1. Once logged into Beyond Identity Admin UI, click on Account Settings.
 
@@ -98,9 +100,9 @@ This integration relies on the ForgeRock OIDC Node which is available in ForgeRo
 
 ![BI Edit OIDC Client](https://github.com/byndid/forgerock/blob/master/bi_edit_oidc_client.png)
 
-### Step 6: Configure Beyond Identity as the Identity Provider
+### Step 6: Configure Beyond Identity as an Identity Provider
 
-### Step 6a: Create Social Identity Provider Profile Transformation script
+#### Step 6a: Create Social Identity Provider Profile Transformation script
 
 1. In the AM console, navigate to Realms > Realm Name > Scripts > New Script
 
@@ -137,7 +139,7 @@ return managedUser
 3. Click on “Save”.
 
 
-### Step 6b: Create Social Identity Provider Profile Transformation script
+#### Step 6b: Create Social Identity Provider Profile Transformation script
 
 1. In the AM console, navigate to Realms > Realm Name > Scripts > New Script
 
@@ -158,16 +160,16 @@ String lastName = nameArray[1];
 
 return json(object(
         field("id", rawProfile.sub),
-        field("email", rawProfile.email),
-  		field("givenName", firstName),
-		field("familyName", lastName),
+        field("email", rawProfile.email), 
+        field("givenName", firstName), 
+        field("familyName", lastName),
         field("username", rawProfile.sub)
 ))
 ```
 
 3. Click on “Save”.
 
-### Step 6c: Configure Beyond Identity as the Social Identity Provider Service
+#### Step 6c: Configure Beyond Identity in the Social Identity Provider Service
 
 1. In the AM console, navigate to Realms > Realm Name > Services > Social Identity Provider Service.
 
@@ -197,7 +199,7 @@ return json(object(
    
    OAuth Scopes(s): openid
    
-   Well Known Endpoint: https://auth.byndid.com/v2/.well-known/jwks.json
+   Well Known Endpoint: https://auth.byndid.com/v2/.well-known/openid-configuration
 
    UI Config Properties
    
@@ -219,7 +221,10 @@ return json(object(
 
 7. Click “Save Changes” with default values.
 
-### Step 6d: Configure Beyond Identity as the OAuth2 Provider Service
+
+//TODO Step 6d should be after step 4 and 5. This is used to set BeyondIdentity as the default tree for OIDC clients 
+like the Beyond Identity Admin and User screens (nothing to do with the journey editor)
+#### Step 6d: Configure Beyond Identity as the OAuth2 Provider Service
 
 1. In the AM console, navigate to Realms > Realm Name > Services > OAuth2 Provider Service.
 
@@ -233,10 +238,12 @@ http://<your_am_domain>?service=BeyondIdentity&goto=${goto}<#if acrValues??>&acr
 
 4. Click on “Save Changes”.
 
-### Step 6e: Configure Beyond Identity Authentication Tree
+#### Step 6e: Configure Beyond Identity Authentication Tree
 
 1. In the AM console, navigate to Realms > Realm Name > Authentication > Trees.
 
+
+//TODO The below direction on how to configure the nodes is somewhat unclear
 2. Click on Create Tree
 
    Name: Beyond Identity
