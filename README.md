@@ -214,7 +214,7 @@ return json(object(
    
    User Profile Services URL: https://auth.byndid.com/v2/userinfo
    
-   Redirect URI: AM_URI
+   Redirect URI: enter_AM_URI_here
    
    Scope Delimiter: enter_a_space_character_here
    
