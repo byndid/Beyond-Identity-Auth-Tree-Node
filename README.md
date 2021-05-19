@@ -238,7 +238,7 @@ return json(object(
    
    ![BI OIDC Auth Tree](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
  
-    First add the nodes as per the list below. Note that some nodes are encased in other nodes. For most nodes, keep the default values, except where mentioned. Then connect the nodes as per the diagram above and comeplete the tree.
+    First add the nodes as per the list below. Note that some nodes are encased in other nodes. For most nodes, keep the default values, except where mentioned. Then connect the nodes as per the diagram above and complete the tree.
 
    
 | Node Name                           | Value                                                                                                               |
