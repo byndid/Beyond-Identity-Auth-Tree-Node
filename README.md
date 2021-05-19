@@ -234,7 +234,7 @@ return json(object(
 
    Name: BeyondIdentity
    
-   Now start buidling the tree as per the diagram shown below. This tree is made up of various nodes, which define actions taken during authentication. The nodes are a small unit of work which have a single purpose. You combine them together to define your unique user experience.
+   Now start building the tree as per the diagram shown below. This tree is made up of various nodes, which define actions taken during authentication. The nodes are a small unit of work which have a single purpose. You combine them together to define your unique user experience.
    
    ![BI OIDC Auth Tree](https://github.com/byndid/forgerock/blob/master/bi_oidc_auth_tree.png)
  
